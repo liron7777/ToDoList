@@ -1,0 +1,40 @@
+@font-face {
+  font-family: "Roboto";
+  src: url("../../Assets/Fonts/Roboto-Light.ttf");
+}
+
+body {
+  font-family: "Roboto";
+  color: rgb(44, 44, 44);
+  background: #f0f0f0;
+  margin: 0;
+  height: 100%;
+  
+}
+
+li{
+  list-style-type: none;
+  // width: 50px;
+}
+
+#root {
+  height: 100%;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+main {
+  width: 100%;
+}
+
+#root {
+  display: flex;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}

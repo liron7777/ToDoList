@@ -1,0 +1,44 @@
+.login_page {
+  height: 100%;
+  width: 100%;
+
+  h2 {
+    font-size: 57px;
+    letter-spacing: 3px;
+  }
+
+  .windows {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+
+    section {
+      width: 100%;
+      text-align: center;
+
+      div {
+        margin-bottom: 5%;
+      }
+
+      button {
+        width: 100px;
+        display: block;
+      }
+    }
+
+    .register_window {
+      background: white;
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+    .change_regiser_window {
+      background: rgb(0, 110, 255);
+      color: white;
+    }
+  }
+}

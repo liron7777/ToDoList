@@ -1,0 +1,59 @@
+.todo_list_page {
+
+  .columns_window {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    .task_card {
+        // width: 100px;
+        border: rgb(216, 216, 216) solid 1px;
+        margin-bottom: 15px;
+      }
+
+
+    .column {
+      background: white;
+      width: 300px;
+      h3 {
+        text-align: center;
+      }
+
+    }
+  }
+}
+
+
+
+// .task_card {
+//   background: red;
+// }
+
+// .column {
+//   display: flex;
+//   flex-direction: column;
+//   width: 250px;
+//   min-height: 150px;
+//   border: rgb(255, 0, 119) solid 1px;
+// }
+
+// .testing1 {
+//   display: flex;
+// }
+
+// .pro {
+//   display: flex;
+// }
+
+// .task_li {
+//   /* border: rgb(255, 0, 119) solid 1px; */
+//   width: 150px;
+//   height: 70px;
+//   margin: 20px;
+//   list-style-type: none;
+//   background-color: rgb(0, 238, 255);
+// }
+
+// li {
+//   list-style-type: none;
+// }

@@ -1,0 +1,58 @@
+.login_page {
+  height: 100%;
+  width: 100%;
+}
+
+.login_page h2 {
+  font-size: 57px;
+  letter-spacing: 3px;
+}
+
+.login_page .windows {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.login_page .windows section {
+  width: 100%;
+  text-align: center;
+}
+
+.login_page .windows section div {
+  margin-bottom: 5%;
+}
+
+.login_page .windows section button {
+  width: 100px;
+  display: block;
+}
+
+.login_page .windows .register_window {
+  background: white;
+}
+
+.login_page .windows .register_window form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.login_page .windows .change_regiser_window {
+  background: #006eff;
+  color: white;
+}
+/*# sourceMappingURL=LoginPageStyle.css.map */
