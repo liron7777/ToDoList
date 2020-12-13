@@ -1,10 +1,13 @@
 import React from "react";
 import Requests from "../../Functions/Requests";
-import Input from "@material-ui/core/Input";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
 
 const useStyles = makeStyles({
+  textField: {
+    width: "30ch",
+  },
   root_button: {
     background: "rgb(0, 110, 255)",
     color: "white",
@@ -12,14 +15,9 @@ const useStyles = makeStyles({
       background: "rgb(8 112 255/85%)",
     },
   },
-  root_input: {
-    width: "250px",
-  },
-  underline: {
-    "&:after": {
-      "border-bottom": "1px solid rgb(8 112 255/85%)",
-    },
-  },
+  // focused: {
+  //   "border-color": "red",
+  // },
 });
 
 export default function RegisterWindowCmp(props) {
@@ -56,26 +54,26 @@ export default function RegisterWindowCmp(props) {
           action={props.request}
           onSubmit={onHandleSubmit}
         >
-          <Input
+          <TextField
             autoComplete="off"
             name="username"
-            placeholder="User name"
-            inputProps={{ "aria-label": "description" }}
-            classes={{
-              root: classes.root_input,
-              underline: classes.underline,
-            }}
+            label="User name"
+            id="outlined-margin-normal"
+            defaultValue=" "
+            className={classes.textField}
+            margin="normal"
+            variant="outlined"
           />
-          {/* <input type="text" placeholder="User name" name="username" /> */}
-          <Input
+
+          <TextField
             autoComplete="off"
             name="password"
-            placeholder="Password"
-            inputProps={{ "aria-label": "description" }}
-            classes={{
-              root: classes.root_input,
-              underline: classes.underline,
-            }}
+            label="Password"
+            id="outlined-margin-normal"
+            defaultValue=" "
+            className={classes.textField}
+            margin="normal"
+            variant="outlined"
           />
 
           <Button
@@ -92,3 +90,6 @@ export default function RegisterWindowCmp(props) {
     </section>
   );
 }
+
+// border-color
+// .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline

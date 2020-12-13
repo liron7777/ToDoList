@@ -26,7 +26,7 @@ export default function LoginPageCmp() {
         <div className="create_account_window windows">
           <RegisterWindowCmp
             button_name="SIGN UP"
-            title="Create Accounnt"
+            title="Create Account"
             request="/sign_up"
           />
           <ChangeRegiserWindowCmp

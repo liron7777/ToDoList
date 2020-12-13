@@ -1,3 +1,26 @@
+.todo_list_page .title_and_add {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 25px;
+}
+
+.todo_list_page .title_and_add button {
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.todo_list_page .create_task {
+  background: white;
+  display: inline-block;
+  padding: 20px;
+  padding-bottom: 40px;
+  margin: 20px;
+}
+
 .todo_list_page .columns_window {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -17,7 +40,7 @@
 
 .todo_list_page .columns_window .column {
   background: white;
-  width: 300px;
+  min-width: 300px;
 }
 
 .todo_list_page .columns_window .column h3 {

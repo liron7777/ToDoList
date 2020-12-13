@@ -38,4 +38,9 @@ main {
 body::-webkit-scrollbar {
   display: none;
 }
+
+li {
+  width: 270px;
+  margin-left: -5px;
+}
 /*# sourceMappingURL=General.css.map */

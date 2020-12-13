@@ -28,8 +28,14 @@
   text-align: center;
 }
 
+.login_page .windows section form {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .login_page .windows section div {
-  margin-bottom: 5%;
+  margin-bottom: 2%;
 }
 
 .login_page .windows section button {

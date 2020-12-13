@@ -11,19 +11,12 @@ const useStyles = makeStyles((theme) => ({
     background: "rgb(0, 110, 255)",
   },
 
-  // name_user: {
-  //   // "&:hover": {
-  //   //   contained:{
-  //   //     color:'red'
-  //   //   }
-  //     // variant:{
-  //     //   color:'red'
-  //     // }
-  //     color:'red',
-  //     // content:'goodbye'
-  //     // backgroundColor: fade(theme.palette.common.white, 0.25),
-  //   }
-  // },
+  logout: {
+    "&:hover": {
+      color: "red",
+      content: "LOGOUT",
+    },
+  },
 
   search: {
     position: "relative",
@@ -75,8 +68,12 @@ export default function ToolBar(props) {
         }}
       >
         <Button
+          onClick={() => {
+            window.location.href = "/#/";
+          }}
           classes={{
-            root: classes.name_user,
+            // root: classes.name_user,
+            label: classes.logout,
           }}
           className="logout"
           color="inherit"
@@ -111,9 +108,9 @@ export default function ToolBar(props) {
     //   {/* <span>test</span> */}
     //   <span>{props.user_name}</span>
     //   <div
-    //     onClick={() => {
-    //       window.location.href = "/#/";
-    //     }}
+    // onClick={() => {
+    //   window.location.href = "/#/";
+    // }}
     //   >
     //     logout
     //   </div>

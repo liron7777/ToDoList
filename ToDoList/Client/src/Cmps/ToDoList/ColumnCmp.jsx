@@ -1,14 +1,18 @@
 import React from "react";
 import TaskCmp from "./TaskCmp";
 import { Droppable } from "react-beautiful-dnd";
-// import Divider from '@material-ui/core/Divider';
-
+import Divider from "@material-ui/core/Divider";
 
 export default function ColumnCmp(props) {
   return (
-    <section className='column'>
+    <section className="column">
       <h3>{props.title}</h3>
-      
+
+  
+        <Divider></Divider>
+     
+      {/* <Divider>CENTER</Divider> */}
+
       {/* <Divider>CENTER</Divider> */}
       <Droppable droppableId={props.status}>
         {(provided) => (
@@ -17,14 +21,14 @@ export default function ColumnCmp(props) {
             ref={provided.innerRef}
             {...provided.droppableProps}
           >
-            <div>
+            {/* <div> */}
               {props.tasks_list
                 ? props.tasks_list.map((task, index) => (
                     <TaskCmp
                       key={index}
                       task={task}
                       number={index}
-                      unique_id ={index+task.task_id}
+                      unique_id={index + task.task_id}
                       // unique_id
                       move={(task_id, status_task) => {
                         props.move(task_id, status_task);
@@ -35,7 +39,7 @@ export default function ColumnCmp(props) {
                     />
                   ))
                 : console.log("loadding")}
-            </div>
+            {/* </div> */}
             {provided.placeholder}
           </ul>
         )}

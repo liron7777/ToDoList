@@ -91,8 +91,32 @@ export default function ToDoListCmp() {
     <div className="todo_list_page">
       <DragDropContext onDragEnd={onDragEnd}>
         <ToolBar user_name={user_name} />
-        <h1>TO DO LIST</h1>
-        {openCreateTask ? (
+        <div className="title_and_add">
+          <h1>TO DO LIST</h1>
+          {openCreateTask ? (
+            <CreateTask
+              state_function={{
+                setTasksList: setTasksList,
+                setOpenCreateTask: setOpenCreateTask,
+              }}
+              user_id={user_id}
+            />
+          ) : (
+            ""
+          )}
+          <Fab
+            size="small"
+            color="secondary"
+            aria-label="add"
+            onClick={() => {
+              setOpenCreateTask(true);
+            }}
+          >
+            <AddIcon />
+          </Fab>
+        </div>
+        {/* <h1>TO DO LIST</h1> */}
+        {/* {openCreateTask ? (
           <CreateTask
             state_function={{
               setTasksList: setTasksList,
@@ -112,7 +136,7 @@ export default function ToDoListCmp() {
           }}
         >
           <AddIcon />
-        </Fab>
+        </Fab> */}
 
         <div className="columns_window">
           {data_cmp.map((data_column, index) => (
@@ -147,59 +171,5 @@ export default function ToDoListCmp() {
         </div>
       </DragDropContext>
     </div>
-    // <DragDropContext onDragEnd={onDragEnd}>
-
-    //   <ToolBar user_name={user_name} />
-    //   {openCreateTask ? (
-    //     <CreateTask
-    //       state_function={{
-    //         setTasksList: setTasksList,
-    //         setOpenCreateTask: setOpenCreateTask,
-    //       }}
-    //       user_id={user_id}
-    //     />
-    //   ) : (
-    //     ""
-    //   )}
-    //   <button
-    //     onClick={() => {
-    //       setOpenCreateTask(true);
-    //     }}
-    //   >
-    //     add
-    //   </button>
-
-    //   <div className="Columns_window">
-    //     {data_cmp.map((data_column, index) => (
-    //       <ColumnCmp
-    //         delete={async (task_id) => {
-    //           Requests.delete_task(task_id);
-    //           let new_tasks_list = tasks_list.filter(
-    //             (task) => task.task_id !== task_id
-    //           );
-    //           setTasksList(new_tasks_list);
-    //         }}
-    //         move={(task_id, status_task) => {
-    //           Requests.post_value("/move", {
-    //             task_id: task_id,
-    //             status_task: status_task,
-    //           }).then((res) => {
-    //             const task_found = tasks_list.find(
-    //               (task) => task.task_id === task_id
-    //             );
-    //             task_found.status = res.data.move_to_status;
-    //             setTasksList((task_found) => [...task_found]);
-    //           });
-    //         }}
-    //         class_name={`${data_column.status} column`}
-    //         status={data_column.status}
-    //         title={data_column.title}
-    //         key={index}
-    //         number={index}
-    //         tasks_list={status_lists[data_column.status]}
-    //       />
-    //     ))}
-    //   </div>
-    // </DragDropContext>
   );
 }

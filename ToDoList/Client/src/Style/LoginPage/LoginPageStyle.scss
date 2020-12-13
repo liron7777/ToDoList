@@ -7,19 +7,31 @@
     letter-spacing: 3px;
   }
 
+  // button{
+  //   align-items: center;
+  // }
+
   .windows {
     display: flex;
     flex-direction: row;
     justify-content: center;
     height: 100%;
     width: 100%;
+    // border: solid 1px red;
+    border-color: red;
+
 
     section {
       width: 100%;
       text-align: center;
 
+      form {
+       
+        align-items: center;
+      }
+
       div {
-        margin-bottom: 5%;
+        margin-bottom: 2%;
       }
 
       button {
