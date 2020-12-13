@@ -1,7 +1,14 @@
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 
+
+
+
+
+
+
 export default function TaskCmp(props) {
+  
   const status_task = props.task.status;
   const task_id = props.task.task_id;
 
@@ -20,6 +27,7 @@ export default function TaskCmp(props) {
           >
             delete
           </div>
+          
           <span>{props.task.title}</span>
           <span>{props.task.descriptiio}</span>
           <span>{props.task.date}</span>
@@ -30,6 +38,7 @@ export default function TaskCmp(props) {
           >
             done
           </div>
+     
           <div
             onClick={() => {
               let value_status = "";
