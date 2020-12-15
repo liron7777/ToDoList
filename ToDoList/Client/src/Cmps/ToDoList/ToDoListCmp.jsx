@@ -1,16 +1,26 @@
 import React from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import { useState, useEffect } from "react";
+
+//                           Import - Cmps
+
 import ToolBar from "./ToolBar";
 import Requests from "../../Functions/Requests";
 import ColumnCmp from "./ColumnCmp";
-import CreateTask from "./CreateTask";
+
+//                           Import - Material
+
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
+import Create_Task from "./Create_Task";
 
 export default function ToDoListCmp() {
+  //                           Use State
+
   const [tasks_list, setTasksList] = useState("");
-  const [openCreateTask, setOpenCreateTask] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  //                           Filter function
 
   const filter = (status) => {
     if (tasks_list) {
@@ -19,15 +29,29 @@ export default function ToDoListCmp() {
     }
   };
 
+  //                           Setting Variables
+
   const status_lists = {
     todo: filter("todo"),
     in_pragress: filter("in_pragress"),
     done: filter("done"),
   };
 
-  let data_user = JSON.parse(localStorage.getItem("data_user"));
-  const user_id = data_user["user_id"];
-  const user_name = data_user["user_name"];
+  const data_user = JSON.parse(localStorage.getItem("data_user")),
+    user_id = data_user["user_id"],
+    user_name = data_user["user_name"];
+
+  const data_cmp = [
+    { title: "TODO", status: "todo" },
+    {
+      title: "IN PROGERESS",
+      status: "in_pragress",
+    },
+    { title: "DONE", status: "done" },
+  ];
+
+  // const uniqid = require("uniqid");
+  //                           Use Effect
 
   useEffect(() => {
     async function tasks_list_useEffect() {
@@ -37,55 +61,41 @@ export default function ToDoListCmp() {
     }
     tasks_list_useEffect();
   }, []);
+  //                           On drag end function
 
   const onDragEnd = (result) => {
     const { destination, source, draggableId } = result;
-
     const task = tasks_list.find(
       (task) => task.task_id === draggableId.substring(1)
     );
-
     if (!destination) {
       return;
     }
-
     if (
       destination.droppableId == source.droppableId &&
       destination.index == source.index
     ) {
       return;
     }
-
     const start = source.droppableId;
     const finish = destination.droppableId;
     const tasks_start_list = status_lists[start];
-
     if (start === finish) {
       tasks_start_list.splice(source.index, 1);
       tasks_start_list.splice(destination.index, 0, task);
 
       return;
     }
-
     const tasks_finish_list = status_lists[finish];
-
     Requests.post_value("/move", {
       task_id: task.task_id,
       status_task: finish,
     });
-
     tasks_start_list.splice(source.index, 1);
     tasks_finish_list.splice(destination.index, 0, task);
   };
 
-  let data_cmp = [
-    { title: "TODO", status: "todo" },
-    {
-      title: "IN PROGERESS",
-      status: "in_pragress",
-    },
-    { title: "DONE", status: "done" },
-  ];
+  //                           RETURN
 
   return (
     <div className="todo_list_page">
@@ -93,51 +103,28 @@ export default function ToDoListCmp() {
         <ToolBar user_name={user_name} />
         <div className="title_and_add">
           <h1>TO DO LIST</h1>
-          {openCreateTask ? (
-            <CreateTask
-              state_function={{
-                setTasksList: setTasksList,
-                setOpenCreateTask: setOpenCreateTask,
+          <div>
+            <Fab
+              size="small"
+              color="secondary"
+              aria-label="add"
+              onClick={() => {
+                setOpen(true);
               }}
-              user_id={user_id}
-            />
-          ) : (
-            ""
-          )}
-          <Fab
-            size="small"
-            color="secondary"
-            aria-label="add"
-            onClick={() => {
-              setOpenCreateTask(true);
-            }}
-          >
-            <AddIcon />
-          </Fab>
+            >
+              <AddIcon />
+            </Fab>
+            {open ? (
+              <Create_Task
+                setOpen={setOpen}
+                user_id={user_id}
+                setTasksList={setTasksList}
+              />
+            ) : (
+              ""
+            )}
+          </div>
         </div>
-        {/* <h1>TO DO LIST</h1> */}
-        {/* {openCreateTask ? (
-          <CreateTask
-            state_function={{
-              setTasksList: setTasksList,
-              setOpenCreateTask: setOpenCreateTask,
-            }}
-            user_id={user_id}
-          />
-        ) : (
-          ""
-        )}
-        <Fab
-          size="small"
-          color="secondary"
-          aria-label="add"
-          onClick={() => {
-            setOpenCreateTask(true);
-          }}
-        >
-          <AddIcon />
-        </Fab> */}
-
         <div className="columns_window">
           {data_cmp.map((data_column, index) => (
             <ColumnCmp

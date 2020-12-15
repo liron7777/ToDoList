@@ -5,10 +5,15 @@ import InputBase from "@material-ui/core/InputBase";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 import Button from "@material-ui/core/Button";
+import LockRoundedIcon from "@material-ui/icons/LockRounded";
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
   root_tool_bar: {
     background: "rgb(0, 110, 255)",
+    display: "flex",
+    "flex-direction": "row",
+    "justify-content": "space-between",
   },
 
   logout: {
@@ -61,59 +66,48 @@ const useStyles = makeStyles((theme) => ({
 export default function ToolBar(props) {
   const classes = useStyles();
   return (
-    <AppBar position="static">
+    <AppBar position="static" className="tool_bar">
       <Toolbar
         classes={{
           regular: classes.root_tool_bar,
         }}
       >
-        <Button
-          onClick={() => {
-            window.location.href = "/#/";
-          }}
-          classes={{
-            // root: classes.name_user,
-            label: classes.logout,
-          }}
-          className="logout"
-          color="inherit"
-        >
-          {props.user_name}
-        </Button>
-        <div className={classes.search}>
-          <div className={classes.searchIcon}>
-            <SearchIcon />
+        <div>
+          <Typography className={classes.title} variant="h6" noWrap>
+            {props.user_name.toUpperCase()}
+          </Typography>
+        </div>
+
+        <div className="logout_and_search">
+          <div className={classes.search}>
+            <div className={classes.searchIcon}>
+              <SearchIcon />
+            </div>
+            <InputBase
+              placeholder="Search…"
+              classes={{
+                regular: classes.regular,
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+              inputProps={{ "aria-label": "search" }}
+            />
           </div>
-          <InputBase
-            placeholder="Search…"
-            classes={{
-              regular: classes.regular,
-              root: classes.inputRoot,
-              input: classes.inputInput,
+          <Button
+            className="logout"
+            color="inherit"
+            onClick={() => {
+              window.location.href = "/#/";
             }}
-            inputProps={{ "aria-label": "search" }}
-          />
+          >
+            <LockRoundedIcon
+            // onClick={() => {
+            //   window.location.href = "/#/";
+            // }}
+            />
+          </Button>
         </div>
       </Toolbar>
     </AppBar>
-
-    // <header>
-    //   <div>Logo</div>
-    //   <input
-    //     type="text"
-    //     placeholder="Search ..."
-    //     name="search_bar"
-    //     // onKeyDown={handle_key_down}
-    //   />
-    //   {/* <span>test</span> */}
-    //   <span>{props.user_name}</span>
-    //   <div
-    // onClick={() => {
-    //   window.location.href = "/#/";
-    // }}
-    //   >
-    //     logout
-    //   </div>
-    // </header>
   );
 }

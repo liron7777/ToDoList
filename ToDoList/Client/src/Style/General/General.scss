@@ -3,43 +3,28 @@
   src: url("../../Assets/Fonts/Roboto-Light.ttf");
 }
 
-body {
-  font-family: "Roboto";
-  color: rgb(44, 44, 44);
-  background: #f0f0f0;
-  margin: 0;
-  height: 100%;
-  
-}
-
-li{
-  list-style-type: none;
-  // width: 50px;
-}
-
-#root {
-  height: 100%;
-}
-
+body,
+#root,
+main,
 html,
-body {
-  margin: 0;
+.windows,
+.login_page {
   height: 100%;
 }
 
-main {
-  width: 100%;
+body {
+  background: #f0f0f0;
+  color: rgb(44, 44, 44);
+  font-family: "Roboto";
+  margin: 0;
 }
 
-#root {
-  display: flex;
+li {
+  list-style-type: none;
+  width: 270px;
+  margin-left: -5px;
 }
 
 body::-webkit-scrollbar {
   display: none;
-}
-
-li{
-  width: 270px;
-  margin-left: -5px; 
 }

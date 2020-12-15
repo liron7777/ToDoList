@@ -1,28 +1,26 @@
 import React from "react";
 import Requests from "../../Functions/Requests";
 import Button from "@material-ui/core/Button";
-import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 
-const useStyles = makeStyles({
-  textField: {
-    width: "30ch",
-  },
-  root_button: {
-    background: "rgb(0, 110, 255)",
-    color: "white",
-    "&:hover": {
-      background: "rgb(8 112 255/85%)",
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    "& label.Mui-focused": {
+      color: "rgb(0, 110, 255)",
+    },
+    "& .MuiOutlinedInput-root": {
+      " &.Mui-focused fieldset": {
+        border: "1.5px solid rgb(0, 110, 255)",
+      },
     },
   },
-  // focused: {
-  //   "border-color": "red",
-  // },
-});
+
+}));
 
 export default function RegisterWindowCmp(props) {
   const classes = useStyles();
-
   const onHandleSubmit = (event) => {
     event.preventDefault();
     let value_input = {
@@ -49,7 +47,7 @@ export default function RegisterWindowCmp(props) {
     <section className="register_window">
       <div>
         <h2>{props.title}</h2>
-        <form
+        <form className={classes.root}
           name="form_window"
           action={props.request}
           onSubmit={onHandleSubmit}
@@ -60,29 +58,19 @@ export default function RegisterWindowCmp(props) {
             label="User name"
             id="outlined-margin-normal"
             defaultValue=" "
-            className={classes.textField}
             margin="normal"
             variant="outlined"
           />
-
           <TextField
             autoComplete="off"
             name="password"
             label="Password"
             id="outlined-margin-normal"
             defaultValue=" "
-            className={classes.textField}
             margin="normal"
             variant="outlined"
           />
-
-          <Button
-            variant="contained"
-            type="submit"
-            classes={{
-              root: classes.root_button,
-            }}
-          >
+          <Button variant="contained" type="submit">
             {props.button_name}
           </Button>
         </form>
@@ -90,6 +78,3 @@ export default function RegisterWindowCmp(props) {
     </section>
   );
 }
-
-// border-color
-// .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline

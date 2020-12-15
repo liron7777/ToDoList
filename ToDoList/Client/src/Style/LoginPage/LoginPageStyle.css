@@ -1,8 +1,3 @@
-.login_page {
-  height: 100%;
-  width: 100%;
-}
-
 .login_page h2 {
   font-size: 57px;
   letter-spacing: 3px;
@@ -19,8 +14,7 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  height: 100%;
-  width: 100%;
+  border-color: red;
 }
 
 .login_page .windows section {
@@ -34,13 +28,29 @@
           align-items: center;
 }
 
+.login_page .windows section form button {
+  margin-top: 15px;
+  background: #006eff;
+  color: white;
+}
+
+.login_page .windows section form button:hover {
+  background: rgba(0, 110, 255, 0.349);
+}
+
 .login_page .windows section div {
   margin-bottom: 2%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .login_page .windows section button {
   width: 100px;
   display: block;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .login_page .windows .register_window {
@@ -60,5 +70,13 @@
 .login_page .windows .change_regiser_window {
   background: #006eff;
   color: white;
+}
+
+.login_page .windows .change_regiser_window button {
+  margin: 30px auto;
+}
+
+.login_page .windows .change_regiser_window button:hover {
+  background: rgba(255, 255, 255, 0.13);
 }
 /*# sourceMappingURL=LoginPageStyle.css.map */
