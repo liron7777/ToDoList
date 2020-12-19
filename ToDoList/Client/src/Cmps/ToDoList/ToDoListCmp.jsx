@@ -19,13 +19,18 @@ export default function ToDoListCmp() {
 
   const [tasks_list, setTasksList] = useState("");
   const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState("");
 
   //                           Filter function
 
   const filter = (status) => {
     if (tasks_list) {
-      let test = tasks_list.filter((task) => task.status === status);
-      return test;
+      let list_status = tasks_list.filter((task) => task.status === status);
+      if (search === "") {
+        return list_status;
+      } else {
+        return list_status.filter((task) => task.title === search);
+      }
     }
   };
 
@@ -50,7 +55,6 @@ export default function ToDoListCmp() {
     { title: "DONE", status: "done" },
   ];
 
-  // const uniqid = require("uniqid");
   //                           Use Effect
 
   useEffect(() => {
@@ -65,9 +69,15 @@ export default function ToDoListCmp() {
 
   const onDragEnd = (result) => {
     const { destination, source, draggableId } = result;
+    // console.log(result);
+    // console.log('list', source.droppableId);
+    // console.log('list2', );
+    // console.log(draggableId);
+    // console.log("draggableId.substring(1)", draggableId.substring(1));
     const task = tasks_list.find(
       (task) => task.task_id === draggableId.substring(1)
     );
+  
     if (!destination) {
       return;
     }
@@ -83,16 +93,23 @@ export default function ToDoListCmp() {
     if (start === finish) {
       tasks_start_list.splice(source.index, 1);
       tasks_start_list.splice(destination.index, 0, task);
-
+      let unchanged_list = tasks_list.filter((task) => task.status != finish);
+      let new_list = unchanged_list.concat(tasks_start_list);
+      setTasksList(new_list);
+      Requests.post_change_list({ user_id: task.user_id, new_list: new_list });
       return;
     }
+
     const tasks_finish_list = status_lists[finish];
-    Requests.post_value("/move", {
-      task_id: task.task_id,
-      status_task: finish,
-    });
+    task.status = finish;
     tasks_start_list.splice(source.index, 1);
     tasks_finish_list.splice(destination.index, 0, task);
+    let unchanged_list = tasks_list.filter(
+      (task) => task.status != finish && task.status != start
+    );
+    let new_list = unchanged_list.concat(tasks_start_list, tasks_finish_list);
+    setTasksList(new_list);
+    Requests.post_change_list({ user_id: task.user_id, new_list: new_list });
   };
 
   //                           RETURN
@@ -100,7 +117,7 @@ export default function ToDoListCmp() {
   return (
     <div className="todo_list_page">
       <DragDropContext onDragEnd={onDragEnd}>
-        <ToolBar user_name={user_name} />
+        <ToolBar user_name={user_name} setsearch={setSearch} />
         <div className="title_and_add">
           <h1>TO DO LIST</h1>
           <div>

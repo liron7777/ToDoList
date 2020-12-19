@@ -14,7 +14,6 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  border-color: red;
 }
 
 .login_page .windows section {
@@ -35,7 +34,7 @@
 }
 
 .login_page .windows section form button:hover {
-  background: rgba(0, 110, 255, 0.349);
+  background: #006eff;
 }
 
 .login_page .windows section div {

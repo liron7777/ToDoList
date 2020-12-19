@@ -12,6 +12,10 @@ html,
   height: 100%;
 }
 
+body::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   background: #f0f0f0;
   color: #2c2c2c;
@@ -19,13 +23,9 @@ body {
   margin: 0;
 }
 
-li {
+body li {
   list-style-type: none;
   width: 270px;
   margin-left: -5px;
-}
-
-body::-webkit-scrollbar {
-  display: none;
 }
 /*# sourceMappingURL=General.css.map */

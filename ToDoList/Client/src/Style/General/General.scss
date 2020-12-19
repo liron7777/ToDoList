@@ -12,19 +12,18 @@ html,
   height: 100%;
 }
 
+body::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   background: #f0f0f0;
   color: rgb(44, 44, 44);
   font-family: "Roboto";
   margin: 0;
-}
-
-li {
-  list-style-type: none;
-  width: 270px;
-  margin-left: -5px;
-}
-
-body::-webkit-scrollbar {
-  display: none;
+  li {
+    list-style-type: none;
+    width: 270px;
+    margin-left: -5px;
+  }
 }

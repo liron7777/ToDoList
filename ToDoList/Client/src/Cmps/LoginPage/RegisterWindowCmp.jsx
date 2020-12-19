@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
-
 }));
 
 export default function RegisterWindowCmp(props) {
@@ -27,27 +26,34 @@ export default function RegisterWindowCmp(props) {
       password: document.querySelector('[name="password"]').value,
       username: document.querySelector('[name="username"]').value,
     };
-    Requests.post_value(props.request, value_input).then((res) => {
-      if (res.data.user_id) {
-        localStorage.setItem(
-          "data_user",
-          JSON.stringify({
-            user_id: res.data.user_id,
-            user_name: res.data.user_name,
-          })
-        );
-        window.location.href = "/#/ToDoList";
-      } else {
-        console.log("operation failed, try again");
-      }
-    });
+    console.log(value_input);
+    console.log(value_input.password, value_input.username);
+    if (value_input.password === " " || value_input.username === " ") {
+      console.log("value is empty");
+    } else {
+      Requests.post_value(props.request, value_input).then((res) => {
+        if (res.data.user_id) {
+          localStorage.setItem(
+            "data_user",
+            JSON.stringify({
+              user_id: res.data.user_id,
+              user_name: res.data.user_name,
+            })
+          );
+          window.location.href = "/#/ToDoList";
+        } else {
+          console.log("operation failed, try again");
+        }
+      });
+    }
   };
 
   return (
     <section className="register_window">
       <div>
         <h2>{props.title}</h2>
-        <form className={classes.root}
+        <form
+          className={classes.root}
           name="form_window"
           action={props.request}
           onSubmit={onHandleSubmit}

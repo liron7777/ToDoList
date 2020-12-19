@@ -64,6 +64,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ToolBar(props) {
+  function enter(key) {
+    if (key === "Enter") {
+      let input_value = document.querySelector('[name="search"]').value;
+      props.setsearch(input_value);
+    }
+  }
+
   const classes = useStyles();
   return (
     <AppBar position="static" className="tool_bar">
@@ -84,6 +91,8 @@ export default function ToolBar(props) {
               <SearchIcon />
             </div>
             <InputBase
+              autoComplete="off"
+              name="search"
               placeholder="Search…"
               classes={{
                 regular: classes.regular,
@@ -91,6 +100,7 @@ export default function ToolBar(props) {
                 input: classes.inputInput,
               }}
               inputProps={{ "aria-label": "search" }}
+              onKeyUp={(e) => enter(e.key)}
             />
           </div>
           <Button
@@ -100,11 +110,7 @@ export default function ToolBar(props) {
               window.location.href = "/#/";
             }}
           >
-            <LockRoundedIcon
-            // onClick={() => {
-            //   window.location.href = "/#/";
-            // }}
-            />
+            <LockRoundedIcon />
           </Button>
         </div>
       </Toolbar>

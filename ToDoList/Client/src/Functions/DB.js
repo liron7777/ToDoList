@@ -17,8 +17,6 @@ async function find(collection, item) {
 }
 
 async function update(task_id, new_value) {
-  console.log("new_value", new_value);
-
   (await connect_todo_list_db("Tasks")).update(
     { task_id: task_id },
     { $set: { status: new_value } }
@@ -31,9 +29,17 @@ async function delete_task(task_id) {
   });
 }
 
+async function change_task_list(user_id, new_task_list) {
+  // (await connect_todo_list_db("Tasks")).remove({ user_id: user_id });
+  // (await connect_todo_list_db("Tasks")).insert(new_task_list);
+  (await connect_todo_list_db("Tasks")).remove({ user_id: user_id}).then((await connect_todo_list_db("Tasks")).insert(new_task_list))
+  // (await connect_todo_list_db("Tasks")).insert(new_task_list);
+}
+
 module.exports = {
   add_to_db,
   find,
   update,
   delete_task,
+  change_task_list,
 };

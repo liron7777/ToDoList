@@ -41,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Create_Task(props) {
+  console.log("Create_Task");
   const classes = useStyles();
   const uniqid = require("uniqid");
   return (
@@ -58,7 +59,7 @@ export default function Create_Task(props) {
             className={classes.textField}
             name="title"
             label="Title"
-            id="outlined-margin-normal"
+            id="title"
             defaultValue=" "
             margin="normal"
             variant="outlined"
@@ -72,7 +73,7 @@ export default function Create_Task(props) {
             }}
             name="descriptiio"
             label="Description"
-            id="outlined-margin-normal"
+            id="descriptiio"
             defaultValue=" "
             margin="normal"
             variant="outlined"
@@ -89,7 +90,6 @@ export default function Create_Task(props) {
             cancel
           </Button>
           <Button
-            // className={classes.root_button}
             className={classes.root_button}
             onClick={() => {
               props.setOpen(false);

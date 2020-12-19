@@ -8,6 +8,7 @@ const {
   find,
   update,
   delete_task,
+  change_task_list,
 } = require("./Client/src/Functions/DB");
 
 app.use(bodyParser.json());
@@ -34,10 +35,12 @@ async function connect(req, res, request) {
 
 app.post("/sign_up", async (req, res) => {
   connect(req, res, "sign_up");
+  // res.send({ login: 'sign_up' })
 });
 
 app.post("/login", async (req, res) => {
   connect(req, res, "login");
+  // res.send({ login: 'login' })
 });
 
 app.post("/create", async (req, res) => {
@@ -46,25 +49,12 @@ app.post("/create", async (req, res) => {
 });
 
 app.get("/tasks_list", async (req, res) => {
-  console.log(req.query.user_id);
   res.send({
     tasks_list: await find("Tasks", { user_id: `${req.query.user_id}` }),
   });
 });
 
 app.post("/move", async (req, res) => {
-  // let value_status = "";
-  // switch (req.body.status_task) {
-  //   case "todo":
-  //     value_status = "in_pragress";
-  //     break;
-  //   case "in_pragress":
-  //     value_status = "done";
-  //     break;
-  //   case "done":
-  //     value_status = "todo";
-  // }
-  // console.log(req.body.task_id, value_status);
   update(req.body.task_id, req.body.status_task);
   res.send({ move_to_status: req.body.status_task });
 });
@@ -72,6 +62,12 @@ app.post("/move", async (req, res) => {
 app.delete("/task", (req, res) => {
   delete_task(req.body.task_id);
   res.end;
+});
+
+app.post("/tasks_list", (req, res) => {
+  change_task_list(req.body.user_id, req.body.new_list);
+  res.send({ change_task_list: "done" });
+  
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
